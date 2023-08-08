@@ -17,8 +17,7 @@ public class ManagerFileOperations<T> {
 
     private String splitPath(String path) {
         String[] typeOfFile = path.split("\\.");
-        String extended = typeOfFile[typeOfFile.length - 1];
-        return extended;
+        return typeOfFile[typeOfFile.length - 1];
     }
 
     public void writeFile(String path, List<T> listOfObjects, Class<T> classInList) throws Exception {

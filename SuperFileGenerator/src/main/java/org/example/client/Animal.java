@@ -1,6 +1,7 @@
 package org.example.client;
 
-public class Animal extends Zoo{
+public class Animal extends Zoo {
+
     private String species;
     private int age;
 

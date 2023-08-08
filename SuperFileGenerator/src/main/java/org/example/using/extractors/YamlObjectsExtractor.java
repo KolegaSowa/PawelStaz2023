@@ -8,7 +8,7 @@ import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.Map;
 
-public class YamlObjectsExtractor<T> implements Extractor {
+public class YamlObjectsExtractor implements Extractor {
 
     @Override
     public void extractor(String path, Field[] allFieldsInStructure, String[] fieldsName, String[] fieldsValue, int lengthFieldsValue, int sizeOfListWithObject) throws Exception {

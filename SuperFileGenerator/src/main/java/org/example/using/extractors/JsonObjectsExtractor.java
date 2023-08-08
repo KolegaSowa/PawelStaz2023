@@ -6,7 +6,7 @@ import org.example.using.writer.JsonWriter;
 import java.io.IOException;
 import java.lang.reflect.Field;
 
-public class JsonObjectsExtractor<T> implements Extractor {
+public class JsonObjectsExtractor implements Extractor {
 
     @Override
     public void extractor(String path, Field[] allFieldsInStructure, String[] fieldName, String[] fieldsValue, int lengthFieldsValue, int sizeOfListWithObject) throws Exception {

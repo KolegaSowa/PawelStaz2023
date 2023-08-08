@@ -16,7 +16,8 @@ import java.io.FileOutputStream;
 
 public class XmlWriter {
 
-    public void generateFile(String path, String[] fieldName, String[] fieldsValue, int sizeOfListWithObject) throws ParserConfigurationException, FileNotFoundException, TransformerException {
+    public void generateFile(String path, String[] fieldName, String[] fieldsValue, int sizeOfListWithObject)
+            throws ParserConfigurationException, FileNotFoundException, TransformerException {
 
         DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();

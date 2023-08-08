@@ -6,7 +6,7 @@ import org.example.using.writer.XlsxWriter;
 import java.lang.reflect.Field;
 
 
-public class XlsxObjectsExtractor<T> implements Extractor {
+public class XlsxObjectsExtractor implements Extractor {
 
     @Override
     public void extractor(String path, Field[] allFieldsInStructure, String[] fieldName, String[] fieldsValue, int lengthFieldsValue, int sizeOfListWithObject) throws Exception {

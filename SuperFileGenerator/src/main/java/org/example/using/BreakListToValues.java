@@ -6,7 +6,6 @@ import java.util.List;
 
 public class BreakListToValues<T> {
 
-
     public void sendToOtherClass(String extended, String path, List<T> listOfObjects, Class<T> classInList) throws Exception {
         Field[] allFieldsInStructure = getAllFieldsInStructure(classInList);
 
@@ -25,12 +24,12 @@ public class BreakListToValues<T> {
     private Field[] getAllFieldsInStructure(Class<?> classInList) {
         Field[] allFieldsInStructure = new Field[0];
         while (classInList != null) {
+
             Field[] classFields = classInList.getDeclaredFields();
             Field[] combinedFields = new Field[allFieldsInStructure.length + classFields.length];
 
             System.arraycopy(allFieldsInStructure, 0, combinedFields, 0, allFieldsInStructure.length);
             System.arraycopy(classFields, 0, combinedFields, allFieldsInStructure.length, classFields.length);
-
             allFieldsInStructure = combinedFields;
 
             classInList = classInList.getSuperclass();
@@ -83,12 +82,10 @@ public class BreakListToValues<T> {
     }
 
     private Integer getLengthFieldsValue(Field[] allFieldsInStructure, List<T> listOfObject) {
-        int lengthFieldsValue = allFieldsInStructure.length * listOfObject.size();
-        return lengthFieldsValue;
+        return allFieldsInStructure.length * listOfObject.size();
     }
 
     private Integer getSizeOfListWithObject(int lengthFieldsValue, String[] fieldsName) {
-        int sizeOfListWithObject = lengthFieldsValue / fieldsName.length;
-        return sizeOfListWithObject;
+        return lengthFieldsValue / fieldsName.length;
     }
 }
