@@ -3,31 +3,33 @@ package org.example.using;
 import org.example.using.reader.*;
 
 public class ChooserFileToRead {
+
+    private static ChooserFileToRead instance;
+
+    private ChooserFileToRead() {
+    }
+
+    public static synchronized ChooserFileToRead getInstance() {
+        if (instance == null) {
+            instance = new ChooserFileToRead();
+        }
+        return instance;
+    }
+
     protected void chooseReader(String extended, String path) throws Exception {
 
-        switch (extended){
-            case "csv":
-                CsvReader csvReader = new CsvReader();
-                csvReader.readFile(path);
-                break;
-            case "xlsx":
-                XlsxReader xlsxReader = new XlsxReader();
-                xlsxReader.readFile(path);
-                break;
-            case "json":
-                JsonReader jsonReader = new JsonReader();
-                jsonReader.readFile(path);
-                break;
-            case "yaml":
-                YamlReader yamlReader = new YamlReader();
-                yamlReader.readFile(path);
-                break;
-            case "xml":
-                XmlReader xmlReader = new XmlReader();
-                xmlReader.readFile(path);
-                break;
-            default:
-                System.out.println("File not found");
+        switch (extended) {
+            case "csv" -> new CsvReader().readFile(path);
+
+            case "xml" -> new XmlReader().readFile(path);
+
+            case "xlsx" -> new XlsxReader().readFile(path);
+
+            case "json" -> new JsonReader().readFile(path);
+
+            case "yaml" -> new YamlReader().readFile(path);
+
+            default -> System.out.println("File not found");
         }
     }
 }

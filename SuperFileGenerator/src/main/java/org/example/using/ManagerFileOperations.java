@@ -3,10 +3,10 @@ package org.example.using;
 import java.util.List;
 
 public class ManagerFileOperations<T> {
+
     private static ManagerFileOperations<?> instance;
 
-    private ManagerFileOperations() {
-    }
+    ManagerFileOperations() {}
 
     public static synchronized ManagerFileOperations<?> getInstance() {
         if (instance == null) {
@@ -28,7 +28,6 @@ public class ManagerFileOperations<T> {
 
     public void readFile(String path) throws Exception {
         String extended = splitPath(path);
-        ChooserFileToRead chooserFileToRead = new ChooserFileToRead();
-        chooserFileToRead.chooseReader(extended, path);
+        ChooserFileToRead.getInstance().chooseReader(extended, path);
     }
 }

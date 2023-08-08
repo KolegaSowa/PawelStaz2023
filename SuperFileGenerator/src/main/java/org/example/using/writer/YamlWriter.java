@@ -8,6 +8,7 @@ import java.io.PrintWriter;
 import java.util.Map;
 
 public class YamlWriter {
+
     public void generateFile(String path, Map<Integer, Object> mapToWrite) throws FileNotFoundException {
 
         DumperOptions dumperOptions = new DumperOptions();

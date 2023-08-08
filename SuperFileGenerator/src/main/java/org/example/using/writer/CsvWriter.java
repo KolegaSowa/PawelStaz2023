@@ -7,13 +7,13 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class CsvWriter implements GenerateFile {
+
     @Override
     public void generateFile(String path, String[] fieldsName, String[] fieldsValue, int sizeOfListWithObject) {
         try {
 
             FileWriter fileWriter = new FileWriter(path);
             CSVWriter csvWriter = new CSVWriter(fileWriter, CSVWriter.DEFAULT_SEPARATOR, CSVWriter.DEFAULT_QUOTE_CHARACTER, CSVWriter.DEFAULT_ESCAPE_CHARACTER, CSVWriter.DEFAULT_LINE_END);
-
 
             int sizeOfArray = fieldsName.length;
 
@@ -35,7 +35,6 @@ public class CsvWriter implements GenerateFile {
             for (int i = 0; i < sizeOfListWithObject; i++) {
                 csvWriter.writeNext(records[i]);
             }
-
 
             csvWriter.close();
 

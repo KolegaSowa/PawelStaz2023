@@ -8,6 +8,7 @@ import java.io.InputStream;
 import java.util.Map;
 
 public class YamlReader implements ReadFile {
+
     @Override
     public void readFile(String path) throws Exception {
         InputStream inputStream = new FileInputStream(path);

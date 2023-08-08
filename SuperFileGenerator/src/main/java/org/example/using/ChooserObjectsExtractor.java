@@ -1,11 +1,22 @@
 package org.example.using;
 
 import org.example.using.extractors.*;
-
 import java.lang.reflect.Field;
 
+public class ChooserObjectsExtractor {
 
-public class ChooserObjectsExtractor<T> {
+    private static ChooserObjectsExtractor instance;
+
+    private ChooserObjectsExtractor() {
+    }
+
+    public static synchronized ChooserObjectsExtractor getInstance() {
+        if (instance == null) {
+            instance = new ChooserObjectsExtractor();
+        }
+        return instance;
+    }
+
     protected void chooseGenerator(String extended, String path, Field[] allFieldsInStructure,
                                    String[] fieldName, String[] fieldsValue, int lengthFieldsValue, int sizeOfListWithObject) throws Exception {
 

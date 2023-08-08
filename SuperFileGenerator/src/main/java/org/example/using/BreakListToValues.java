@@ -5,14 +5,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BreakListToValues<T> {
+
+
     public void sendToOtherClass(String extended, String path, List<T> listOfObjects, Class<T> classInList) throws Exception {
         Field[] allFieldsInStructure = getAllFieldsInStructure(classInList);
+
         String[] fieldsName = getFieldsName(classInList, allFieldsInStructure);
+
         int lengthFieldsValue = getLengthFieldsValue(allFieldsInStructure, listOfObjects);
+
         String[] fieldsValue = getFieldsValue(listOfObjects, allFieldsInStructure, lengthFieldsValue);
+
         int sizeOfListWithObject = getSizeOfListWithObject(lengthFieldsValue, fieldsName);
 
-        new ChooserObjectsExtractor().chooseGenerator(extended, path, allFieldsInStructure, fieldsName, fieldsValue, lengthFieldsValue, sizeOfListWithObject);
+
+        ChooserObjectsExtractor.getInstance().chooseGenerator(extended, path, allFieldsInStructure, fieldsName, fieldsValue, lengthFieldsValue, sizeOfListWithObject);
     }
 
     private Field[] getAllFieldsInStructure(Class<?> classInList) {

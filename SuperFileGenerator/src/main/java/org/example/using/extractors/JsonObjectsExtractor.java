@@ -14,8 +14,8 @@ public class JsonObjectsExtractor<T> implements Extractor {
         sendToFileWriter(path, fieldName, fieldsValue, sizeOfListWithObject);
     }
 
-
     private void sendToFileWriter(String path, String[] fieldsName, String[] fieldsValue, int sizeOfListWithObject) throws IOException {
+
         new JsonWriter().generateFile(path, fieldsName, fieldsValue, sizeOfListWithObject);
     }
 

@@ -11,6 +11,7 @@ import java.io.OutputStream;
 import java.nio.file.Files;
 
 public class XlsxWriter implements GenerateFile {
+
     @Override
     public void generateFile(String path, String[] fieldsName, String[] fieldsValue, int sizeOfListWithObject) throws Exception{
         try(Workbook workbook = new HSSFWorkbook()) {

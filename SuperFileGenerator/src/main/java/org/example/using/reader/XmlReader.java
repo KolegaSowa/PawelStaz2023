@@ -10,6 +10,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.File;
 
 public class XmlReader implements ReadFile {
+
     @Override
     public void readFile(String path) throws Exception {
         File file = new File(path);

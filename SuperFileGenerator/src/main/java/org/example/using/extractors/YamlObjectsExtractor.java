@@ -9,12 +9,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class YamlObjectsExtractor<T> implements Extractor {
+
     @Override
     public void extractor(String path, Field[] allFieldsInStructure, String[] fieldsName, String[] fieldsValue, int lengthFieldsValue, int sizeOfListWithObject) throws Exception {
 
         int indexBooster = 0;
         int counter = 0;
-
 
         Map<Integer, Object> mapToSend = new HashMap<>();
 

@@ -6,6 +6,7 @@ import org.example.interfaces.ReadFile;
 import java.io.File;
 
 public class JsonReader implements ReadFile {
+
     @Override
     public void readFile(String path) throws Exception {
         ObjectMapper objectMapper = new ObjectMapper();

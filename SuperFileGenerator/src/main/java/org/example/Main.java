@@ -7,12 +7,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
+
     public static void main(String[] args) throws Exception {
 
         List<Panda> pandaList = new ArrayList<>();
-        pandaList.add(new Panda("Gdańsk", "Panda Wielka", 15, "Bobo", "czarno-biala"));
-        pandaList.add(new Panda("Wrocław", "Panda Mała", 18, "Bibi", "rudy"));
-        pandaList.add(new Panda("Poznań", "Panda Mała", 11, "Bunia", "rudy"));
+        pandaList.add(new Panda("Gdańsk", "Panda Wielka", 15, "Bobo", "czarno-bialy"));
+        pandaList.add(new Panda("Wrocław", "Panda Mała", 20, "Bibi", "rudy"));
+        pandaList.add(new Panda("Poznań", "Panda Mała", 13, "Bunia", "rudy"));
+
 
         String pathPanda1 = "C:\\Users\\pzientara\\Desktop\\csv_file\\TablePandaCSV.csv";
 
@@ -32,6 +34,7 @@ public class Main {
         managerFileOperations.writeFile(pathPanda4, pandaList, Panda.class);
         managerFileOperations.writeFile(pathPanda5, pandaList, Panda.class);
 
-        //managerFileOperations.readFile(pathPanda1);
+        managerFileOperations.readFile(pathPanda1);
+        managerFileOperations.readFile(pathPanda2);
     }
 }

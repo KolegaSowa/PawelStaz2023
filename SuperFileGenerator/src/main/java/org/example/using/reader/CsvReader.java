@@ -1,14 +1,19 @@
 package org.example.using.reader;
 
 import  org.example.interfaces.*;
-import java.io.*;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+
 
 public class CsvReader implements ReadFile {
 
     public final String delimiter = ",";
 
     @Override
-    public void readFile(String path) throws Exception{
+    public void readFile(String path) {
         try {
             File file = new File(path);
             FileReader fileReader = new FileReader(file);
