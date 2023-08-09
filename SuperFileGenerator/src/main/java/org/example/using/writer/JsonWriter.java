@@ -1,37 +1,37 @@
 package org.example.using.writer;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 import org.example.interfaces.FileGenerator;
-import org.json.simple.JSONObject;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.List;
 
 public class JsonWriter implements FileGenerator {
 
     @Override
-    public void generateFile(String path, String[] fieldsName, String[] fieldsValue, int sizeOfListWithObject) throws IOException {
+    public void generateFile(String path, List<String> fieldsName, List<String> fieldsValue) throws IOException {
 
-        int indexBooster = 0;
-        int counter = 0;
+        JsonObject jsonObject = new JsonObject();
+        JsonArray fieldsArray = new JsonArray();
 
-        try (FileWriter file = new FileWriter(path)) {
+        for (int i = 0; i < fieldsName.size(); i++) {
+            JsonObject fieldObject = new JsonObject();
+            fieldObject.addProperty("field name", fieldsName.get(i));
+            fieldObject.addProperty("field value", fieldsValue.get(i));
+            fieldsArray.add(fieldObject);
+        }
 
-            JSONObject jsonObject = new JSONObject();
+        jsonObject.add("field", fieldsArray);
 
-            for (int i = 0; i < sizeOfListWithObject; i++) {
-                for (int j = 0; j < fieldsName.length; j++) {
-                    if (i > 0 && counter == 5) {
-                        indexBooster = (indexBooster + fieldsName.length);
-                        counter = 0;
-                    }
-                    jsonObject.put(fieldsName[j], fieldsValue[j + indexBooster]);
-                    counter++;
-                }
-                file.write(jsonObject.toJSONString());
-            }
-        } catch (IOException e){
+        String jsonOutput = new Gson().toJson(jsonObject);
+
+        try (FileWriter fileWriter = new FileWriter(path)) {
+            fileWriter.write(jsonOutput);
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
 }
-

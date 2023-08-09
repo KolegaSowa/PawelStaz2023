@@ -24,7 +24,7 @@ public class ManagerFileOperations<T> {
 
     public void writeFile(String path, List<T> listOfObjects, Class<T> classInList) throws Exception {
         String extension = getFileExtensionFromPath(path);
-        new ArraysWithValues<T>().sendValues(extension, path, listOfObjects, classInList);
+        new ListsWithValues<T>().sendValues(extension, path, listOfObjects, classInList);
     }
 
     public void readFile(String path) throws Exception {

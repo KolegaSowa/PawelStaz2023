@@ -6,6 +6,7 @@ import org.w3c.dom.Element;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
@@ -13,43 +14,53 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.util.List;
 
 public class XmlWriter {
 
-    public void generateFile(String path, String[] fieldName, String[] fieldsValue, int sizeOfListWithObject)
+    public void generateFile(String path, List<String> fieldName, List<String> fieldsValue)
             throws ParserConfigurationException, FileNotFoundException, TransformerException {
 
-        DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
-        DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
+        try {
+            DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
 
-        Document document = documentBuilder.newDocument();
+            Document doc = docBuilder.newDocument();
+            Element rootElement = doc.createElement("data");
+            doc.appendChild(rootElement);
 
-        int indexBooster = 0;
-        int counter = 0;
+            for (int i = 0; i < fieldName.size(); i++) {
+                Element fieldElement = doc.createElement("field");
+                rootElement.appendChild(fieldElement);
 
-        Element root = document.createElement("Objects");
-        document.appendChild(root);
+                Element nameElement = doc.createElement("name field");
+                nameElement.appendChild(doc.createTextNode(fieldName.get(i)));
+                fieldElement.appendChild(nameElement);
 
-        for (int numberOfRow = 0; numberOfRow < sizeOfListWithObject; numberOfRow++) {
-            for (int numberOfColumn = 0; numberOfColumn < fieldName.length; numberOfColumn++) {
-                if (numberOfRow > 0 && counter == 5) {
-                    indexBooster = indexBooster + fieldName.length;
-                    counter = 0;
+                Element valuesElement = doc.createElement("values");
+                fieldElement.appendChild(valuesElement);
+
+                String[] values = fieldsValue.get(i).split(",");
+                for (String value : values) {
+                    Element valueElement = doc.createElement("value");
+                    valueElement.appendChild(doc.createTextNode(value));
+                    valuesElement.appendChild(valueElement);
                 }
-                Element field = document.createElement(fieldName[numberOfColumn]);
-                field.setTextContent(fieldsValue[numberOfColumn + indexBooster]);
-                root.appendChild(field);
-
-                counter++;
             }
+
+            TransformerFactory transformerFactory = TransformerFactory.newInstance();
+            Transformer transformer = transformerFactory.newTransformer();
+            transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+
+            DOMSource source = new DOMSource(doc);
+            StreamResult result = new StreamResult(new FileOutputStream(path));
+
+            transformer.transform(source, result);
+
+            System.out.println("File saved!");
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-
-        FileOutputStream outputStream = new FileOutputStream(path);
-        TransformerFactory transformerFactory = TransformerFactory.newInstance();
-        Transformer transformer = transformerFactory.newTransformer();
-        DOMSource source = new DOMSource(document);
-        StreamResult result = new StreamResult(outputStream);
-
-        transformer.transform(source, result);
     }
 }

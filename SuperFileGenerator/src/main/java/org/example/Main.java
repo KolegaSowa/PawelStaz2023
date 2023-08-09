@@ -13,7 +13,7 @@ public class Main {
         List<Panda> pandaList = new ArrayList<>();
         pandaList.add(new Panda("Gdańsk", "Panda Wielka", 15, "Bobo", "czarno-bialy"));
         pandaList.add(new Panda("Wrocław", "Panda Mała", 20, "Bibi", "rudy"));
-        pandaList.add(new Panda("Poznań", "Panda Mała", 13, "Bunia", "rudy"));
+        pandaList.add(new Panda("Poznań", "Panda Mała", 9, "Bunia", "rudy"));
 
 
         String pathPanda1 = "C:\\Users\\pzientara\\Desktop\\csv_file\\TablePandaCSV.csv";
@@ -28,13 +28,12 @@ public class Main {
 
         ManagerFileOperations managerFileOperations = ManagerFileOperations.getInstance();
 
-//        managerFileOperations.writeFile(pathPanda1, pandaList, Panda.class);
-//        managerFileOperations.writeFile(pathPanda2, pandaList, Panda.class);
-//        managerFileOperations.writeFile(pathPanda3, pandaList, Panda.class);
-//        managerFileOperations.writeFile(pathPanda4, pandaList, Panda.class);
-//        managerFileOperations.writeFile(pathPanda5, pandaList, Panda.class);
+        managerFileOperations.writeFile(pathPanda1, pandaList, Panda.class);
+        managerFileOperations.writeFile(pathPanda2, pandaList, Panda.class);
+        managerFileOperations.writeFile(pathPanda3, pandaList, Panda.class);
+        managerFileOperations.writeFile(pathPanda4, pandaList, Panda.class);
+        managerFileOperations.writeFile(pathPanda5, pandaList, Panda.class);
 
-//        managerFileOperations.readFile(pathPanda4);
-//        managerFileOperations.readFile(pathPanda2);
+        managerFileOperations.readFile(pathPanda1);
     }
 }

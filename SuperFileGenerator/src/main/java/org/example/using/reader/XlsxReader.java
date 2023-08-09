@@ -1,6 +1,10 @@
 package org.example.using.reader;
 
-import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.example.interfaces.DocumentFileReader;
 
 import java.io.FileInputStream;
@@ -9,21 +13,37 @@ import java.io.IOException;
 public class XlsxReader implements DocumentFileReader {
 
     @Override
-    public void readFile(String path) throws IOException {
-        Workbook workbook;
+    public void readFile(String path) {
 
-        FileInputStream fins = new FileInputStream(path);
-        workbook = WorkbookFactory.create(fins);
-        Sheet sheet = workbook.getSheetAt(0);
-        FormulaEvaluator formulaEvaluator = workbook.getCreationHelper().createFormulaEvaluator();
+        try (FileInputStream fis = new FileInputStream(path);
+             Workbook workbook = WorkbookFactory.create(fis)) {
 
-        for (Row row : sheet){
-            for(Cell cell : row){
-                switch (formulaEvaluator.evaluateInCell(cell).getCellType()){
-                    case NUMERIC -> System.out.println(cell.getNumericCellValue());
-                    case STRING -> System.out.println(cell.getStringCellValue());
+            Sheet sheet = workbook.getSheetAt(0);
+
+            for (Row row : sheet) {
+                for (Cell cell : row) {
+                    switch (cell.getCellType()) {
+                        case STRING:
+                            System.out.print(cell.getStringCellValue() + "\t");
+                            break;
+                        case NUMERIC:
+                            System.out.print(cell.getNumericCellValue() + "\t");
+                            break;
+                        case BOOLEAN:
+                            System.out.print(cell.getBooleanCellValue() + "\t");
+                            break;
+                        case BLANK:
+                            System.out.print("BLANK\t");
+                            break;
+                        default:
+                            System.out.print("UNKNOWN\t");
+                    }
                 }
+                System.out.println();
             }
+
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }

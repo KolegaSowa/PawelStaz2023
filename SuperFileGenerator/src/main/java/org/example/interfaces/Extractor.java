@@ -1,7 +1,7 @@
 package org.example.interfaces;
 
-import java.lang.reflect.Field;
+import java.util.List;
 
 public interface Extractor {
-    void extract(String path, Field[] allFieldsInStructure, String[] fieldName, String[] fieldsValue, int lengthFieldsValue, int sizeOfListWithObject) throws Exception;
+    void extract(String path, List<String> fieldName, List<String> fieldsValue) throws Exception;
 }

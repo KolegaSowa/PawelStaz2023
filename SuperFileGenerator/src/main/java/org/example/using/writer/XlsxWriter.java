@@ -1,6 +1,7 @@
 package org.example.using.writer;
 
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -9,34 +10,30 @@ import org.example.interfaces.FileGenerator;
 import java.io.File;
 import java.io.OutputStream;
 import java.nio.file.Files;
+import java.util.List;
 
 public class XlsxWriter implements FileGenerator {
 
     @Override
-    public void generateFile(String path, String[] fieldsName, String[] fieldsValue, int sizeOfListWithObject) throws Exception {
+    public void generateFile(String path, List<String> fieldsName, List<String> fieldsValue) throws Exception {
 
         try (Workbook workbook = new HSSFWorkbook()) {
-            Sheet sheet = workbook.createSheet();
 
-            int sizeOfArray = fieldsName.length;
+            Sheet sheet = workbook.createSheet();
 
             Row headerRow = sheet.createRow(0);
 
-            for (int numberOfHeaderCell = 0; numberOfHeaderCell < sizeOfArray; numberOfHeaderCell++) {
-                headerRow.createCell(numberOfHeaderCell).setCellValue(fieldsName[numberOfHeaderCell]);
+            for (int indexOfHeaderRow = 0; indexOfHeaderRow < fieldsName.size(); indexOfHeaderRow++) {
+                Cell cell = headerRow.createCell(indexOfHeaderRow);
+                cell.setCellValue(fieldsName.get(indexOfHeaderRow));
             }
 
-            String[][] records = new String[sizeOfListWithObject][sizeOfArray];
-            for (int numberOfValueCell = 0; numberOfValueCell < fieldsValue.length; numberOfValueCell++) {
-                int recordsIndex = numberOfValueCell / sizeOfArray;
-                int innerIndex = numberOfValueCell % sizeOfArray;
-                records[recordsIndex][innerIndex] = fieldsValue[numberOfValueCell];
-            }
-
-            for (int numberOfRows = 0; numberOfRows < sizeOfListWithObject; numberOfRows++) {
-                Row row = sheet.createRow(numberOfRows + 1);
-                for (int cellIndex = 0; cellIndex < sizeOfArray; cellIndex++) {
-                    row.createCell(cellIndex).setCellValue(records[numberOfRows][cellIndex]);
+            for (int indexOfDataRow = 0; indexOfDataRow < fieldsValue.size(); indexOfDataRow += fieldsName.size()) {
+                Row dataRow = sheet.createRow((indexOfDataRow / fieldsName.size()) + 1);
+                List<String> rowValues = fieldsValue.subList(indexOfDataRow, indexOfDataRow + fieldsName.size());
+                for (int indexOfValue = 0; indexOfValue < rowValues.size(); indexOfValue++) {
+                    Cell cell = dataRow.createCell(indexOfValue);
+                    cell.setCellValue(rowValues.get(indexOfValue));
                 }
             }
 
