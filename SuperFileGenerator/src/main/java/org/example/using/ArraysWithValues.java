@@ -4,12 +4,12 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BreakListToValues<T> {
+public class ArraysWithValues<T> {
 
-    public void sendToOtherClass(String extended, String path, List<T> listOfObjects, Class<T> classInList) throws Exception {
+    public void sendValues(String extended, String path, List<T> listOfObjects, Class<T> classInList) throws Exception {
         Field[] allFieldsInStructure = getAllFieldsInStructure(classInList);
 
-        String[] fieldsName = getFieldsName(classInList, allFieldsInStructure);
+        String[] fieldsName = getFieldName(classInList, allFieldsInStructure);
 
         int lengthFieldsValue = getLengthFieldsValue(allFieldsInStructure, listOfObjects);
 
@@ -17,8 +17,8 @@ public class BreakListToValues<T> {
 
         int sizeOfListWithObject = getSizeOfListWithObject(lengthFieldsValue, fieldsName);
 
-
-        ChooserObjectsExtractor.getInstance().chooseGenerator(extended, path, allFieldsInStructure, fieldsName, fieldsValue, lengthFieldsValue, sizeOfListWithObject);
+        ObjectExtractorChooser chooserObjectsExtractor = ObjectExtractorChooser.getInstance();
+        chooserObjectsExtractor.chooseGenerator(extended, path, allFieldsInStructure, fieldsName, fieldsValue, lengthFieldsValue, sizeOfListWithObject);
     }
 
     private Field[] getAllFieldsInStructure(Class<?> classInList) {
@@ -37,7 +37,7 @@ public class BreakListToValues<T> {
         return allFieldsInStructure;
     }
 
-    private String[] getFieldsName(Class<?> classInList, Field[] allFieldsInStructure) {
+    private String[] getFieldName(Class<?> classInList, Field[] allFieldsInStructure) {
         List<String> fieldsNameList = new ArrayList<>();
 
         while (classInList != null) {

@@ -17,6 +17,5 @@ public class YamlWriter {
         PrintWriter writer = new PrintWriter(path);
         Yaml yaml = new Yaml(dumperOptions);
         yaml.dump(mapToWrite, writer);
-
     }
 }

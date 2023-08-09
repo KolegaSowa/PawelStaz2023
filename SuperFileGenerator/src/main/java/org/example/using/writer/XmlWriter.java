@@ -30,14 +30,14 @@ public class XmlWriter {
         Element root = document.createElement("Objects");
         document.appendChild(root);
 
-        for (int i = 0; i < sizeOfListWithObject; i++) {
-            for (int j = 0; j < fieldName.length; j++) {
-                if (i > 0 && counter == 5) {
+        for (int numberOfRow = 0; numberOfRow < sizeOfListWithObject; numberOfRow++) {
+            for (int numberOfColumn = 0; numberOfColumn < fieldName.length; numberOfColumn++) {
+                if (numberOfRow > 0 && counter == 5) {
                     indexBooster = indexBooster + fieldName.length;
                     counter = 0;
                 }
-                Element field = document.createElement(fieldName[j]);
-                field.setTextContent(fieldsValue[j + indexBooster]);
+                Element field = document.createElement(fieldName[numberOfColumn]);
+                field.setTextContent(fieldsValue[numberOfColumn + indexBooster]);
                 root.appendChild(field);
 
                 counter++;

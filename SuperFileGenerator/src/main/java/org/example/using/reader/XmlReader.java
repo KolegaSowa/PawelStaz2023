@@ -1,6 +1,6 @@
 package org.example.using.reader;
 
-import org.example.interfaces.ReadFile;
+import org.example.interfaces.DocumentFileReader;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -9,7 +9,7 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.File;
 
-public class XmlReader implements ReadFile {
+public class XmlReader implements DocumentFileReader {
 
     @Override
     public void readFile(String path) throws Exception {

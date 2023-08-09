@@ -1,14 +1,12 @@
 package org.example.using.reader;
 
 import org.apache.poi.ss.usermodel.*;
-import org.example.interfaces.ReadFile;
+import org.example.interfaces.DocumentFileReader;
 
 import java.io.FileInputStream;
 import java.io.IOException;
 
-
-
-public class XlsxReader implements ReadFile {
+public class XlsxReader implements DocumentFileReader {
 
     @Override
     public void readFile(String path) throws IOException {

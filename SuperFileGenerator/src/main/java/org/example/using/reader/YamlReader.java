@@ -1,13 +1,13 @@
 package org.example.using.reader;
 
-import org.example.interfaces.ReadFile;
+import org.example.interfaces.DocumentFileReader;
 import org.yaml.snakeyaml.Yaml;
 
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.Map;
 
-public class YamlReader implements ReadFile {
+public class YamlReader implements DocumentFileReader {
 
     @Override
     public void readFile(String path) throws Exception {

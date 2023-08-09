@@ -28,13 +28,13 @@ public class Main {
 
         ManagerFileOperations managerFileOperations = ManagerFileOperations.getInstance();
 
-        managerFileOperations.writeFile(pathPanda1, pandaList, Panda.class);
-        managerFileOperations.writeFile(pathPanda2, pandaList, Panda.class);
-        managerFileOperations.writeFile(pathPanda3, pandaList, Panda.class);
-        managerFileOperations.writeFile(pathPanda4, pandaList, Panda.class);
-        managerFileOperations.writeFile(pathPanda5, pandaList, Panda.class);
+//        managerFileOperations.writeFile(pathPanda1, pandaList, Panda.class);
+//        managerFileOperations.writeFile(pathPanda2, pandaList, Panda.class);
+//        managerFileOperations.writeFile(pathPanda3, pandaList, Panda.class);
+//        managerFileOperations.writeFile(pathPanda4, pandaList, Panda.class);
+//        managerFileOperations.writeFile(pathPanda5, pandaList, Panda.class);
 
-        managerFileOperations.readFile(pathPanda1);
-        managerFileOperations.readFile(pathPanda2);
+//        managerFileOperations.readFile(pathPanda4);
+//        managerFileOperations.readFile(pathPanda2);
     }
 }

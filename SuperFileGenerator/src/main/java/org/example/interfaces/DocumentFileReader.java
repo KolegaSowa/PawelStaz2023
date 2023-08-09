@@ -1,5 +1,5 @@
 package org.example.interfaces;
 
-public interface ReadFile{
+public interface DocumentFileReader {
     void readFile(String path) throws Exception;
 }

@@ -11,15 +11,9 @@ import java.lang.reflect.Field;
 public class XmlObjectsExtractor implements Extractor {
 
     @Override
-    public void extractor(String path, Field[] allFieldsInStructure, String[] fieldName, String[] fieldsValue, int lengthFieldsValue, int sizeOfListWithObject)
+    public void extract(String path, Field[] allFieldsInStructure, String[] fieldName, String[] fieldsValue, int lengthFieldsValue, int sizeOfListWithObject)
             throws ParserConfigurationException, FileNotFoundException, TransformerException {
 
-        sendToFileGenerator(path,fieldName,fieldsValue,sizeOfListWithObject);
-    }
-
-    private void sendToFileGenerator(String path, String[] fieldName, String[] fieldsValue, int sizeOfListWithObject)
-            throws ParserConfigurationException, FileNotFoundException, TransformerException {
-
-        new XmlWriter().generateFile(path,fieldName,fieldsValue,sizeOfListWithObject);
+        new XmlWriter().generateFile(path, fieldName, fieldsValue, sizeOfListWithObject);
     }
 }

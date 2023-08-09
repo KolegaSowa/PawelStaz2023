@@ -1,12 +1,14 @@
 package org.example.using;
 
+import lombok.NoArgsConstructor;
+import org.example.interfaces.DocumentFileReader;
+
 import java.util.List;
 
+@NoArgsConstructor
 public class ManagerFileOperations<T> {
 
     private static ManagerFileOperations<?> instance;
-
-    ManagerFileOperations() {}
 
     public static synchronized ManagerFileOperations<?> getInstance() {
         if (instance == null) {
@@ -15,18 +17,19 @@ public class ManagerFileOperations<T> {
         return instance;
     }
 
-    private String splitPath(String path) {
+    private String getFileExtensionFromPath(String path) {
         String[] typeOfFile = path.split("\\.");
         return typeOfFile[typeOfFile.length - 1];
     }
 
     public void writeFile(String path, List<T> listOfObjects, Class<T> classInList) throws Exception {
-        String extended = splitPath(path);
-        new BreakListToValues<T>().sendToOtherClass(extended, path, listOfObjects, classInList);
+        String extension = getFileExtensionFromPath(path);
+        new ArraysWithValues<T>().sendValues(extension, path, listOfObjects, classInList);
     }
 
     public void readFile(String path) throws Exception {
-        String extended = splitPath(path);
-        ChooserFileToRead.getInstance().chooseReader(extended, path);
+        String extension = getFileExtensionFromPath(path);
+        DocumentFileReader documentFileReader = ProviderFileToRead.getInstance().chooseReader(extension);
+        documentFileReader.readFile(path);
     }
 }

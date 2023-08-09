@@ -1,12 +1,12 @@
 package org.example.using.writer;
 
 import com.opencsv.CSVWriter;
-import org.example.interfaces.GenerateFile;
+import org.example.interfaces.FileGenerator;
 
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class CsvWriter implements GenerateFile {
+public class CsvWriter implements FileGenerator {
 
     @Override
     public void generateFile(String path, String[] fieldsName, String[] fieldsValue, int sizeOfListWithObject) {
