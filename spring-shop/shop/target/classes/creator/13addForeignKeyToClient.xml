@@ -1,0 +1,12 @@
+<!--liquibase formatted xml-->
+<!--changeset pawel:1-->
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+    <changeSet author="pawel" id="1">
+        <addForeignKeyConstraint baseTableName="CLIENT" baseColumnNames="id_order" constraintName="fk_id_order"
+                                 referencedTableName="ORDERS"
+                                 referencedColumnNames="id_order"></addForeignKeyConstraint>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,16 @@
+com\example\shop\entities\role\RoleService.class
+com\example\shop\entities\productandorder\ProductAndOrder.class
+com\example\shop\entities\cart\Cart.class
+com\example\shop\entities\clientdata\ClientData.class
+com\example\shop\entities\historyofchange\HistoryOfChange.class
+com\example\shop\entities\orders\Orders.class
+com\example\shop\entities\role\Role.class
+com\example\shop\entities\client\Client.class
+com\example\shop\ShopApplication.class
+com\example\shop\entities\role\RoleRepository.class
+com\example\shop\entities\employee\Employee.class
+com\example\shop\entities\product\Product.class
+com\example\shop\entities\productandcart\ProductAndCart.class
+com\example\shop\entities\role\RoleController.class
+com\example\shop\entities\address\Address.class
+com\example\shop\entities\employeedata\EmployeeData.class
