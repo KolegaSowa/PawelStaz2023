@@ -1,0 +1,20 @@
+<!--liquibase formatted xml-->
+<!--changeset pawel:1-->
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+    <changeSet author="pawel" id="1">
+        <createTable tableName="PRODUCT_AND_ORDER">
+            <column name="id_product_and_order" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="id_product" type="BIGINT">
+                <constraints nullable="false" foreignKeyName="fk3_id_product" references="PRODUCT(id_product)"/>
+            </column>
+            <column name="id_order" type="BIGINT">
+                <constraints nullable="false" foreignKeyName="fk2_id_order" references="ORDERS(id_order)"/>
+            </column>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>
